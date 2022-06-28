@@ -1,0 +1,39 @@
+Script started on 2022-06-28 19:41:14+0000
+                    echo "Kubernetes Master is not UP and running yet."
+                    env.id = sh(script: 'aws ec2 describe-instances --filters Name=tag-value,Values=master Name=tag-value,Values=tera-kube-ans Name=instance-state-name,Values=running --query Reservations[*].Instances[*].[InstanceId] --output text',  returnStdout:true).trim()
+                    sh 'aws ec2 wait instance-status-ok --instance-ids $id'
+                }
+            }
+        }
+
+        stage('Create Kubernetes Cluster for QA Automation Build') {
+            steps {
+                echo "Setup Kubernetes Cluster for QA Automation Build for ${APP_NAME} App"
+                sh "ansible-playbook -i ${WORKSPACE}/ansible/inventory/qa_stack_dynamic_inventory_aws_ec2.yaml ${WORKSPACE}/ansible/playbooks/k8s_setup.yaml"
+            }
+        }
+      }
+
+    post {
+        failure ]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db{
+            echo 'Tear down the Kubernetes Clust[?1034h[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m                    echo "Kubernetes Master is not UP  and running yet."
+Kubernetes Master is not UP and running yet.
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-dbcd ${WORKSPACE}/infrastructure/qa-k8s-terraform
+  [1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m                    env.id = sh(script: 'aws ec2 descr ibe-instances --filters Name=tag-value,Values=master Name=tag-value,Values=tera-kube-ans Name=instance-state-name,Values=running --quer y Reservations[*].Instances[*].[InstanceId] --output text',  returnStdout:true).trim()
+bash: syntax error near unexpected token `('
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m                    sh 'aws ec2 wait instance-status-o k --instance-ids $id'
+sh: aws ec2 wait instance-status-ok --instance-ids $id: No such file or directory
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m                }
+bash: syntax error near unexpected token `}'
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m            }
+bash: syntax error near unexpected token `}'
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m        }
+bash: syntax error near unexpected token `}'
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m        stage('Create Kubernetes Cluster for QA Automa tion Build') {
+bash: syntax error near unexpected token `'Create Kubernetes Cluster for QA Automation Build''
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m            steps {
+bash: steps: command not found
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# petclinic-microservices-with-db:[32m[1;36m (feature/msp-19)$[00m                echo "Setup Kubernetes Cluster for QA  Automation Build for ${APP_NAME} App"
+Setup Kubernetes Cluster for QA Automation Build for  App
+]0;ec2-user@petclinic-dev-server:~/petclinic-microservices-with-db[1;31mec2-user[33m@petclinic-dev-server# 

@@ -84,4 +84,8 @@ services:
       MYSQL_ROOT_PASSWORD: petclinic
       MYSQL_DATABASE: petclinic
     ports:
+<<<<<<< HEAD
     - 3306:3306
+=======
+    - 3306:3306
+>>>>>>> feature/msp-18
